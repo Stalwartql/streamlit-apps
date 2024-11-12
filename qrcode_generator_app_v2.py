@@ -1,26 +1,16 @@
 import streamlit as st
-import decode_qrcode_page import decode_qrcode_page
+from decode_qrcode_page import decode_qrcode_page
+from generate_qrcode_page import generate_qrcode
 
 # Using object notation
-add_selectbox = st.sidebar.selectbox(
-    "How would you like to be contacted?",
-    ("Email", "Home phone", "Mobile phone")
+choice = st.sidebar.selectbox(
+    "Menu",
+    ("Create QR Code", "Decode QR Code", "About me")
 )
 
-# Using "with" notation
-with st.sidebar:
-    add_radio = st.radio(
-        "Choose a shipping method",
-        ("Standard (5-15 days)", "Express (2-5 days)")
-    )
-
-import streamlit as st
-import time
-
-with st.sidebar:
-    with st.echo():
-        st.write("This code will be printed to the sidebar.")
-
-    with st.spinner("Loading..."):
-        time.sleep(5)
-    st.success("Done!")
+if choice == "Create QR Code":
+    generate_qrcode()
+elif choice == "Decode QR Code":
+    decode_qrcode_page()
+elif choice == "About me":
+    st.write("Hi! My name is maryam")
